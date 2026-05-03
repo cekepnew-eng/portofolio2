@@ -6,24 +6,24 @@ import './App.css'
 const PROJECTS = [
   {
     title: 'Project One',
-    meta: 'E-commerce · UI/UX · Frontend',
+    meta: 'UMKM · UI/UX · Frontend',
     year: '2025',
     preview: 'preview--1',
-    image: '/project-one.jpg',
+    image: '/project-1.jpg',
   },
   {
     title: 'Project Two',
-    meta: 'SaaS · Design System · Web App',
+    meta: 'Laporan · SistemLaporan · Web app',
     year: '2025',
     preview: 'preview--2',
-    image: '/projects/project-two.jpg',
+    image: '/sistemprojek.jpg',
   },
   {
     title: 'Project Three',
-    meta: 'Portfolio · Motion · Branding',
-    year: '2024',
+    meta: 'UMKM · UI/UX · FRONTEND-BACKEND',
+    year: '2026',
     preview: 'preview--3',
-    image: '/projects/project-three.jpg',
+    image: '/bbcprojek.jpg',
   },
 ]
 
@@ -52,11 +52,6 @@ const SERVICES = [
   { title: 'UI/UX Design', desc: 'Wireframes, high-fidelity interfaces, interactive prototypes, and scalable design systems that put users first.' },
   { title: 'Frontend Development', desc: 'Pixel-perfect React applications with clean architecture, responsive layouts, and buttery-smooth animations.' },
   { title: 'Brand & Visual Identity', desc: 'Art direction, typography, color systems, and digital brand guidelines that make your product unforgettable.' },
-]
-
-const MARQUEE_WORDS = [
-  'Design Systems', 'Brand Identity', 'React', 'Vite',
-  'Motion Design', 'Accessibility', 'Web Apps', 'UI Engineering',
 ]
 
 const SOCIALS = [
@@ -123,20 +118,6 @@ const CERTIFICATES = [
     year: '2024',
     category: 'Web Fundamentals',
     image: '/frontend.jpg',
-  },
-  {
-    title: 'JavaScript Algorithms and Data Structures',
-    issuer: 'freeCodeCamp',
-    year: '2024',
-    category: 'JavaScript',
-    image: '/certs/js-algorithms.jpg',
-  },
-  {
-    title: 'UI Design Foundations',
-    issuer: 'Coursera',
-    year: '2025',
-    category: 'UI/UX',
-    image: '/certs/ui-design-foundations.jpg',
   },
 ]
 
@@ -268,7 +249,16 @@ function App() {
   const [activeProject, setActiveProject] = useState(null)
 
   const onProjectMove = useCallback((e, idx) => {
-    setPreviewPos({ x: e.clientX + 20, y: e.clientY - 120 })
+    const vw = window.innerWidth
+    const vh = window.innerHeight
+    const previewW = Math.min(420, vw * 0.35, 360)
+    const previewH = Math.min(300, vh * 0.25, 240)
+    let x = e.clientX + 24
+    let y = e.clientY - previewH / 2
+    if (x + previewW > vw - 16) x = e.clientX - previewW - 24
+    if (y < 16) y = 16
+    if (y + previewH > vh - 16) y = vh - previewH - 16
+    setPreviewPos({ x, y })
     setActiveProject(idx)
   }, [])
 
@@ -296,11 +286,11 @@ function App() {
         {activeProject !== null && (
           <motion.div
             className="project-row__preview"
-            style={{ left: previewPos.x, top: previewPos.y, position: 'fixed', opacity: 1, transform: 'scale(1)' }}
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.85 }}
-            transition={{ duration: 0.25, ease }}
+            style={{ left: previewPos.x, top: previewPos.y, position: 'fixed' }}
+            initial={{ opacity: 0, scale: 0.6, rotate: -3 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, scale: 0.7, rotate: 3 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className={`project-row__preview-inner ${PROJECTS[activeProject]?.preview}`}>
               <img
@@ -321,8 +311,20 @@ function App() {
       >
         <div className="top__inner">
           <a className="brand" href="#top" aria-label="Home">
-            <span className="brand__dot" aria-hidden="true" />
-            <span>Adrian Maulana</span>
+            <span className="brand__mark" aria-hidden="true">
+              <svg viewBox="0 0 48 48" width="28" height="28" focusable="false" aria-hidden="true">
+                <path
+                  d="M12 35V13h9.3c6.2 0 10.3 3.6 10.3 9.1 0 5.6-4.1 9.2-10.3 9.2H18.6V35H12zm6.6-9.1h2.6c3 0 4.8-1.4 4.8-3.7 0-2.2-1.8-3.6-4.8-3.6h-2.6v7.3z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M26.8 35l8.3-22h6.9L34 35h-7.2zm10.8-6.9l-2.2-6.5-2.3 6.5h4.5z"
+                  fill="currentColor"
+                  opacity="0.72"
+                />
+              </svg>
+            </span>
+            <span className="brand__text">Adrian Maulana</span>
           </a>
 
           <nav className="nav" aria-label="Primary">
@@ -461,73 +463,64 @@ function App() {
           </section>
         ) : (
           <>
-        {/* ═══════════ HERO ═══════════ */}
-        <section className="hero">
-          <div className="hero__bg" aria-hidden="true">
-            <div className="hero__orb hero__orb--1" />
-            <div className="hero__orb hero__orb--2" />
-            <div className="hero__orb hero__orb--3" />
-          </div>
+        {/* ═══════════ HERO (Pinned) ═══════════ */}
+        <div className="heroWrap">
+          <section className="hero hero--sticky">
+            <div className="hero__bg" aria-hidden="true">
+              <div className="hero__nebula" aria-hidden="true" />
+              <div className="hero__stars" aria-hidden="true" />
+              <div className="hero__shootingStar" aria-hidden="true" />
+              <div className="hero__shootingStar" aria-hidden="true" />
+              <div className="hero__shootingStar" aria-hidden="true" />
+            </div>
 
-          <motion.div
-            className="hero__content"
-            variants={stagger}
-            initial="hidden"
-            animate="show"
-          >
-            <motion.div className="hero__label" variants={fadeUp}>
-              Creative Developer — Based in Indonesia
-            </motion.div>
+            <motion.div
+              className="hero__content"
+              variants={stagger}
+              initial="hidden"
+              animate="show"
+            >
+              <motion.div className="hero__label" variants={fadeUp}>
+                Creative Developer — Based in Indonesia
+              </motion.div>
 
-            <motion.div className="hero__kicker" variants={fadeUp}>
-              Digital craft for ambitious brands
-            </motion.div>
+              <motion.div className="hero__kicker" variants={fadeUp}>
+                Digital craft for ambitious brands
+              </motion.div>
 
-            <h1 className="hero__title">
-              <motion.span className="hero__title-line" variants={stagger} initial="hidden" animate="show">
-                {splitText('ADRIAN')}
-              </motion.span>
-              <motion.span className="hero__title-line hero__title-line--stroke" variants={stagger} initial="hidden" animate="show">
-                {splitText('MAULANA')}
-              </motion.span>
-            </h1>
+              <h1 className="hero__title">
+                <motion.span className="hero__title-line" variants={stagger} initial="hidden" animate="show">
+                  {splitText('WEB DEVELOPER')}
+                </motion.span>
+                <motion.span className="hero__title-line hero__title-line--stroke" variants={stagger} initial="hidden" animate="show">
+                  {splitText('& DESIGNER')}
+                </motion.span>
+              </h1>
 
-            <motion.div className="hero__bottom" variants={fadeUp}>
-              <div className="hero__lead">
-                <p className="hero__desc">
-                  I build fast, beautiful, and interactive web experiences.
-                  Focused on clean code, smooth motion, and pixel-perfect interfaces
-                  that make a lasting impression.
-                </p>
-                <div className="hero__actions">
-                  <a href="#work" className="hero__btn">View selected work</a>
-                  <a href="#certificate" className="hero__btn hero__btn--ghost">See certificates</a>
-                  <a href={CV_URL} download className="hero__btn hero__btn--ghost">Download CV</a>
+              <motion.div className="hero__bottom" variants={fadeUp}>
+                <div className="hero__lead">
+                  <p className="hero__desc">
+                    I build fast, beautiful, and interactive web experiences.
+                    Focused on clean code, smooth motion, and pixel-perfect interfaces
+                    that make a lasting impression.
+                  </p>
+                  <div className="hero__actions">
+                    <a href="#work" className="hero__btn">View selected work</a>
+                    <a href="#certificate" className="hero__btn hero__btn--ghost">See certificates</a>
+                    <a href={CV_URL} download className="hero__btn hero__btn--ghost">Download CV</a>
+                  </div>
+                  <ul className="hero__meta" aria-label="Profile highlights">
+                    {HERO_DETAILS.map((item) => (
+                      <li key={item.label}>
+                        <span>{item.label}</span>
+                        <strong>{item.value}</strong>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="hero__meta" aria-label="Profile highlights">
-                  {HERO_DETAILS.map((item) => (
-                    <li key={item.label}>
-                      <span>{item.label}</span>
-                      <strong>{item.value}</strong>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="hero__scroll">
-                <span>Scroll</span>
-                <div className="hero__scroll-line" />
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        </section>
-
-        {/* ── Marquee ── */}
-        <div className="marquee" aria-label="Skills marquee">
-          <div className="marquee__track">
-            {[...MARQUEE_WORDS, ...MARQUEE_WORDS].map((w, i) => (
-              <span key={i}>{w}</span>
-            ))}
-          </div>
+          </section>
         </div>
 
         {/* ═══════════ ABOUT ═══════════ */}
@@ -825,33 +818,90 @@ function App() {
 
       {/* ═══════════ FOOTER ═══════════ */}
       <footer className="footer">
-        <div className="footer__left">
-          <div className="footer__brand">© {new Date().getFullYear()} Adrian Maulana</div>
-          <div className="footer__meta">{currentTime} WIB</div>
-        </div>
+        <div className="footer__grid">
+          {/* Brand + Contact Column */}
+          <div className="footer__col footer__col--brand">
+            <div className="footer__brand">
+              <span className="footer__logo" aria-hidden="true">
+                <svg viewBox="0 0 48 48" width="28" height="28" focusable="false">
+                  <path d="M12 35V13h9.3c6.2 0 10.3 3.6 10.3 9.1 0 5.6-4.1 9.2-10.3 9.2H18.6V35H12zm6.6-9.1h2.6c3 0 4.8-1.4 4.8-3.7 0-2.2-1.8-3.6-4.8-3.6h-2.6v7.3z" fill="currentColor"/>
+                  <path d="M26.8 35l8.3-22h6.9L34 35h-7.2zm10.8-6.9l-2.2-6.5-2.3 6.5h4.5z" fill="currentColor" opacity="0.72"/>
+                </svg>
+              </span>
+              <span className="footer__brandName">Adrian Maulana</span>
+            </div>
 
-        <div className="footer__mid" aria-label="Footer links">
-          <a className="footer__link" href="#about">About</a>
-          <a className="footer__link" href="#work">Work</a>
-          <a className="footer__link" href="#skills">Skills</a>
-          <a className="footer__link" href="#certificate">Certificate</a>
-          <a className="footer__link" href="#contact">Contact</a>
-        </div>
-
-        <div className="footer__right">
-          <div className="footer__social" aria-label="Social">
-            {SOCIALS.map((s) => (
-              <a key={s.label} className="footer__socialLink" href={s.href} aria-label={s.label}>
-                <span aria-hidden="true">{s.icon}</span>
+            <div className="footer__contactBlock">
+              <h4 className="footer__colTitle">Contact</h4>
+              <div className="footer__contactRow">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <span>Pintu Ledeng</span>
+              </div>
+              <a className="footer__contactRow" href="mailto:adrianmaulana@email.com">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <span>{CONTACT_EMAIL}</span>
               </a>
-            ))}
+              <a className="footer__contactRow" href="tel:+6282123368495">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>0821 2336 8495</span>
+              </a>
+            </div>
+
+            <div className="footer__socialRow" aria-label="Social links">
+              {SOCIALS.map((s) => (
+                <a key={s.label} className="footer__socialIcon" href={s.href} aria-label={s.label}>
+                  <span aria-hidden="true">{s.icon}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Column */}
+          <div className="footer__col">
+            <h4 className="footer__colTitle">Navigation</h4>
+            <a className="footer__colLink" href="#about">About</a>
+            <a className="footer__colLink" href="#work">Work</a>
+            <a className="footer__colLink" href="#skills">Skills</a>
+            <a className="footer__colLink" href="#certificate">Certificates</a>
+            <a className="footer__colLink" href="#contact">Contact</a>
+          </div>
+
+          {/* Services Column */}
+          <div className="footer__col">
+            <h4 className="footer__colTitle">Services</h4>
+            <a className="footer__colLink" href="#">Web Development</a>
+            <a className="footer__colLink" href="#">UI/UX Design</a>
+            <a className="footer__colLink" href="#">Frontend</a>
+            <a className="footer__colLink" href="#">Backend</a>
+            <a className="footer__colLink" href="#">Responsive Design</a>
+          </div>
+
+          {/* Tech Column */}
+          <div className="footer__col">
+            <h4 className="footer__colTitle">Tech Stack</h4>
+            <span className="footer__colLink footer__colLink--static">React</span>
+            <span className="footer__colLink footer__colLink--static">JavaScript</span>
+            <span className="footer__colLink footer__colLink--static">Tailwind CSS</span>
+            <span className="footer__colLink footer__colLink--static">Node.js</span>
+            <span className="footer__colLink footer__colLink--static">Git</span>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="footer__bar">
+          <div className="footer__copy">
+            © {new Date().getFullYear()} Adrian Maulana
+          </div>
+          <div className="footer__time">
+            {currentTime} WIB
           </div>
           <button
             className="footer__back"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             type="button"
+            aria-label="Back to top"
           >
-            ↑ Back to top
+            <span>↑</span>
           </button>
         </div>
       </footer>

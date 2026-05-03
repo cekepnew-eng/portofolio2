@@ -17,40 +17,40 @@
 
 /* ── Dark Theme ───────────────────────────────────── */
 html[data-theme='dark'] {
-  --bg: #08080c;
-  --bg2: #0d0d14;
-  --bg3: #141420;
-  --text: rgba(235, 235, 248, 0.72);
-  --text-h: rgba(248, 248, 255, 0.96);
-  --muted: rgba(208, 208, 235, 0.44);
-  --border: rgba(255, 255, 255, 0.06);
-  --border2: rgba(255, 255, 255, 0.12);
-  --shadow: 0 30px 100px rgba(0, 0, 0, 0.7);
-  --glow: rgba(139, 92, 246, 0.12);
-  --glow2: rgba(6, 182, 212, 0.08);
-  --hero-mesh: radial-gradient(ellipse 80% 60% at 70% 20%, rgba(139, 92, 246, 0.08), transparent 60%),
-               radial-gradient(ellipse 60% 50% at 20% 80%, rgba(6, 182, 212, 0.06), transparent 50%),
-               radial-gradient(ellipse 50% 40% at 50% 50%, rgba(236, 72, 153, 0.04), transparent 50%);
+  --bg: #000000;
+  --bg2: #0a0a0f;
+  --bg3: #12121a;
+  --text: rgba(235, 235, 248, 0.75);
+  --text-h: rgba(255, 255, 255, 0.98);
+  --muted: rgba(180, 180, 220, 0.5);
+  --border: rgba(255, 255, 255, 0.08);
+  --border2: rgba(255, 255, 255, 0.15);
+  --shadow: 0 30px 100px rgba(0, 0, 0, 0.8);
+  --glow: rgba(139, 92, 246, 0.15);
+  --glow2: rgba(6, 182, 212, 0.12);
+  --glow3: rgba(236, 72, 153, 0.1);
+  --star: rgba(255, 255, 255, 0.9);
+  --hero-mesh: none;
   color-scheme: dark;
 }
 
 /* ── Light Theme ──────────────────────────────────── */
 html[data-theme='light'] {
-  --bg: #f8f8f4;
-  --bg2: #ffffff;
-  --bg3: #eeeeea;
-  --text: rgba(20, 20, 30, 0.7);
-  --text-h: rgba(15, 15, 25, 0.94);
-  --muted: rgba(20, 20, 40, 0.46);
-  --border: rgba(15, 15, 25, 0.07);
-  --border2: rgba(15, 15, 25, 0.13);
-  --shadow: 0 30px 100px rgba(10, 10, 11, 0.08);
-  --glow: rgba(139, 92, 246, 0.07);
-  --glow2: rgba(6, 182, 212, 0.05);
-  --hero-mesh: radial-gradient(ellipse 80% 60% at 70% 20%, rgba(139, 92, 246, 0.06), transparent 60%),
-               radial-gradient(ellipse 60% 50% at 20% 80%, rgba(6, 182, 212, 0.05), transparent 50%),
-               radial-gradient(ellipse 50% 40% at 50% 50%, rgba(236, 72, 153, 0.03), transparent 50%);
-  color-scheme: light;
+  --bg: #000000;
+  --bg2: #0a0a0f;
+  --bg3: #12121a;
+  --text: rgba(230, 230, 245, 0.75);
+  --text-h: rgba(255, 255, 255, 0.96);
+  --muted: rgba(180, 180, 210, 0.5);
+  --border: rgba(255, 255, 255, 0.08);
+  --border2: rgba(255, 255, 255, 0.15);
+  --shadow: 0 30px 100px rgba(0, 0, 0, 0.6);
+  --glow: rgba(139, 92, 246, 0.12);
+  --glow2: rgba(6, 182, 212, 0.1);
+  --glow3: rgba(236, 72, 153, 0.08);
+  --star: rgba(255, 255, 255, 0.85);
+  --hero-mesh: none;
+  color-scheme: dark;
 }
 
 /* ── Resets & Base ────────────────────────────────── */
