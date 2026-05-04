@@ -617,6 +617,10 @@ function App() {
                 <span className="project-row__title">{p.title}</span>
                 <span className="project-row__meta">{p.meta}</span>
                 <span className="project-row__year">{p.year}</span>
+                {/* Mobile thumbnail - visible on touch devices */}
+                <span className="project-row__thumb">
+                  <img src={p.image} alt={p.title} loading="lazy" />
+                </span>
                 <span className="project-row__arrow">↗</span>
                 <span className="project-row__line" />
               </motion.a>
@@ -674,7 +678,7 @@ function App() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          variants={stagger}
+          variants={stagger}modern
         >
           <motion.div className="section__header" variants={fadeUp}>
             <div>
@@ -818,34 +822,19 @@ function App() {
 
       {/* ═══════════ FOOTER ═══════════ */}
       <footer className="footer">
-        <div className="footer__grid">
-          {/* Brand + Contact Column */}
-          <div className="footer__col footer__col--brand">
-            <div className="footer__brand">
+        <div className="footer__main">
+          {/* Brand Column */}
+          <div className="footer__brandCol">
+            <div className="footer__logoBox">
               <span className="footer__logo" aria-hidden="true">
-                <svg viewBox="0 0 48 48" width="28" height="28" focusable="false">
-                  <path d="M12 35V13h9.3c6.2 0 10.3 3.6 10.3 9.1 0 5.6-4.1 9.2-10.3 9.2H18.6V35H12zm6.6-9.1h2.6c3 0 4.8-1.4 4.8-3.7 0-2.2-1.8-3.6-4.8-3.6h-2.6v7.3z" fill="currentColor"/>
-                  <path d="M26.8 35l8.3-22h6.9L34 35h-7.2zm10.8-6.9l-2.2-6.5-2.3 6.5h4.5z" fill="currentColor" opacity="0.72"/>
+                <svg viewBox="0 0 48 48" width="32" height="32" focusable="false">
+                  <path d="M14 32V16h8c5 0 8 3 8 7 0 4-3 7-8 7h-4v2H14zm5-5h3c2 0 3-1 3-2 0-1-1-2-3-2h-3v4z" fill="currentColor"/>
+                  <path d="M26 32l7-18h6l-6 18h-7z" fill="currentColor" opacity="0.7"/>
                 </svg>
               </span>
               <span className="footer__brandName">Adrian Maulana</span>
             </div>
-
-            <div className="footer__contactBlock">
-              <h4 className="footer__colTitle">Contact</h4>
-              <div className="footer__contactRow">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                <span>Pintu Ledeng</span>
-              </div>
-              <a className="footer__contactRow" href="mailto:adrianmaulana@email.com">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                <span>{CONTACT_EMAIL}</span>
-              </a>
-              <a className="footer__contactRow" href="tel:+6282123368495">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                <span>0821 2336 8495</span>
-              </a>
-            </div>
+            <p className="footer__tagline">Creative Developer crafting digital experiences.</p>
 
             <div className="footer__socialRow" aria-label="Social links">
               {SOCIALS.map((s) => (
@@ -856,41 +845,39 @@ function App() {
             </div>
           </div>
 
-          {/* Navigation Column */}
-          <div className="footer__col">
-            <h4 className="footer__colTitle">Navigation</h4>
-            <a className="footer__colLink" href="#about">About</a>
-            <a className="footer__colLink" href="#work">Work</a>
-            <a className="footer__colLink" href="#skills">Skills</a>
-            <a className="footer__colLink" href="#certificate">Certificates</a>
-            <a className="footer__colLink" href="#contact">Contact</a>
-          </div>
+          {/* Links Grid */}
+          <div className="footer__linksGrid">
+            <div className="footer__linksCol">
+              <h4 className="footer__colTitle">Navigation</h4>
+              <a className="footer__colLink" href="#about">About</a>
+              <a className="footer__colLink" href="#work">Work</a>
+              <a className="footer__colLink" href="#skills">Skills</a>
+              <a className="footer__colLink" href="#certificate">Certificates</a>
+              <a className="footer__colLink" href="#contact">Contact</a>
+            </div>
 
-          {/* Services Column */}
-          <div className="footer__col">
-            <h4 className="footer__colTitle">Services</h4>
-            <a className="footer__colLink" href="#">Web Development</a>
-            <a className="footer__colLink" href="#">UI/UX Design</a>
-            <a className="footer__colLink" href="#">Frontend</a>
-            <a className="footer__colLink" href="#">Backend</a>
-            <a className="footer__colLink" href="#">Responsive Design</a>
-          </div>
-
-          {/* Tech Column */}
-          <div className="footer__col">
-            <h4 className="footer__colTitle">Tech Stack</h4>
-            <span className="footer__colLink footer__colLink--static">React</span>
-            <span className="footer__colLink footer__colLink--static">JavaScript</span>
-            <span className="footer__colLink footer__colLink--static">Tailwind CSS</span>
-            <span className="footer__colLink footer__colLink--static">Node.js</span>
-            <span className="footer__colLink footer__colLink--static">Git</span>
+            <div className="footer__linksCol">
+              <h4 className="footer__colTitle">Contact</h4>
+              <a className="footer__contactRow" href="mailto:adrianmaulana@email.com">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <span>{CONTACT_EMAIL}</span>
+              </a>
+              <a className="footer__contactRow" href="tel:+6282123368495">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>0821 2336 8495</span>
+              </a>
+              <div className="footer__contactRow">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <span>Pintu Ledeng</span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="footer__bar">
           <div className="footer__copy">
-            © {new Date().getFullYear()} Adrian Maulana
+            © {new Date().getFullYear()} Adrian Maulana. All rights reserved.
           </div>
           <div className="footer__time">
             {currentTime} WIB
